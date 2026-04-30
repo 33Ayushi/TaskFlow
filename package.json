@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "TaskFlow - Team Task Manager",
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "scripts": {
     "postinstall": "cd backend && npm install && cd ../frontend && npm install --include=dev",
