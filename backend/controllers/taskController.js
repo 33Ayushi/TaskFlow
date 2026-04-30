@@ -20,13 +20,15 @@ const createTask = async (req, res) => {
 
     const { title, description, status, priority, dueDate, project, assignedTo } = req.body;
 
-    // Verify project exists
-    const projectDoc = await Project.findById(project);
-    if (!projectDoc) {
-      return res.status(404).json({
-        success: false,
-        message: 'Project not found.',
-      });
+    // Verify project exists if provided
+    if (project) {
+      const projectDoc = await Project.findById(project);
+      if (!projectDoc) {
+        return res.status(404).json({
+          success: false,
+          message: 'Project not found.',
+        });
+      }
     }
 
     const task = await Task.create({
@@ -35,8 +37,8 @@ const createTask = async (req, res) => {
       status: status || 'todo',
       priority: priority || 'medium',
       dueDate,
-      project,
-      assignedTo,
+      project: project || undefined,
+      assignedTo: assignedTo || undefined,
       createdBy: req.user._id,
     });
 
