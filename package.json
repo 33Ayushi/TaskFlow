@@ -2,6 +2,9 @@
   "name": "taskflow",
   "version": "1.0.0",
   "description": "TaskFlow - Team Task Manager",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "postinstall": "cd backend && npm install && cd ../frontend && npm install --include=dev",
     "dev:backend": "cd backend && npm run dev",
