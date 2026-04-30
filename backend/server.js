@@ -32,8 +32,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-
-//Serve frontend in production
+// Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
  app.get('*', (req, res) => {
