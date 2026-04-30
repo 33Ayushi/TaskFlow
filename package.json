@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "TaskFlow - Team Task Manager",
   "scripts": {
-    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install --include=dev",
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "build": "cd frontend && npm run build",
-    "start": "cd backend && npm start"
+    "start": "node backend/server.js"
   }
 }
