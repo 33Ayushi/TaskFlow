@@ -31,14 +31,18 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+// Root route
+app.get("/", (req, res) => {
+  res.send("TaskFlow API is running 🚀");
+});
 
 // Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-  });
-}
+//if (process.env.NODE_ENV === 'production') {
+  //app.use(express.static(path.join(__dirname, '../frontend/dist')));
+ // app.get('*', (req, res) => {
+    //res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  //});
+//}
 
 // Global error handler
 app.use((err, req, res, next) => {
