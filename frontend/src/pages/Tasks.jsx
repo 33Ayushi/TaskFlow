@@ -72,6 +72,15 @@ const Tasks = () => {
     } catch { toast.error('Failed to update'); }
   };
 
+  const handleDeleteTask = async (taskId) => {
+    if (!window.confirm('Are you sure you want to delete this task?')) return;
+    try {
+      await tasksAPI.delete(taskId);
+      toast.success('Task deleted successfully');
+      fetchTasks();
+    } catch { toast.error('Failed to delete task'); }
+  };
+
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
   const isOverdue = (d) => d && new Date(d) < new Date();
 
@@ -139,6 +148,12 @@ const Tasks = () => {
                   <button className="btn btn-sm btn-secondary" style={{ borderColor: 'var(--success)', color: 'var(--success)' }}
                     onClick={() => handleStatusChange(task._id, 'done')}>
                     Done ✓
+                  </button>
+                )}
+                {isAdmin && (
+                  <button className="btn btn-sm btn-secondary" style={{ borderColor: 'var(--danger)', color: 'var(--danger)', marginLeft: 'auto' }}
+                    onClick={() => handleDeleteTask(task._id)}>
+                    Delete
                   </button>
                 )}
               </div>
