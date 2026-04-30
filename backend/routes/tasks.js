@@ -30,7 +30,7 @@ router.post(
       .withMessage('Task title is required')
       .isLength({ max: 150 })
       .withMessage('Title must be less than 150 characters'),
-    body('project').notEmpty().withMessage('Project ID is required'),
+    body('project').optional(),
     body('status')
       .optional()
       .isIn(['todo', 'in-progress', 'done'])

@@ -49,10 +49,7 @@ const Tasks = () => {
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
-    if (!taskForm.project) {
-      toast.error('Please select a project');
-      return;
-    }
+
     setSaving(true);
     try {
       await tasksAPI.create(taskForm);
@@ -171,8 +168,8 @@ const Tasks = () => {
             </div>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem'}}>
               <div className="form-group">
-                <label>Project *</label>
-                <select value={taskForm.project} onChange={e => setTaskForm({...taskForm, project: e.target.value})} required>
+                <label>Project</label>
+                <select value={taskForm.project} onChange={e => setTaskForm({...taskForm, project: e.target.value})}>
                   <option value="">Select Project</option>
                   {projectsList.map(p => <option key={p._id} value={p._id}>{p.title}</option>)}
                 </select>
